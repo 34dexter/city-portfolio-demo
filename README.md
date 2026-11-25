@@ -15,7 +15,7 @@ npm run preview   # serve the production build
 
 All text lives in `src/data/resume.js`: profile, skills, experience, projects, education and contact links.
 
-- **LinkedIn:** paste your profile URL into `profile.linkedin`. It shows up on the Contact panel and the signpost once it isn't empty.
+- **LinkedIn:** set in `profile.linkedin`. It appears on the Contact panel and the signpost; leave it empty to hide it.
 - **Phone:** left out on purpose. Add it to `profile.phone` if you want it public.
 
 ## The districts

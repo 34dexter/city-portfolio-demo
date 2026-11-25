@@ -9,8 +9,7 @@ export const profile = {
     phone: '',
     portfolio: 'https://34dexter.github.io/portfolio',
     github: 'https://github.com/34dexter',
-    // Paste your LinkedIn profile URL here. The link stays hidden while this is empty.
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/punith-b-314a4034b',
     summary:
         'Electronics and Communication Engineering graduate with 4 months of experience as a Sports Data Analyst at HUDL India (November 2024 to March 2025). ' +
         'Skilled in Python, JavaScript, HTML, CSS, React, Node.js, MongoDB, and basic SQL. Knowledge of manual, regression, and smoke testing. ' +

@@ -18,7 +18,7 @@ export function contactLinks()
         { label: 'GitHub', value: profile.github.replace('https://', ''), url: profile.github },
     ]
     if(profile.linkedin)
-        links.push({ label: 'LinkedIn', value: 'LinkedIn profile', url: profile.linkedin })
+        links.push({ label: 'LinkedIn', value: profile.linkedin.replace('https://www.', ''), url: profile.linkedin })
     if(profile.phone)
         links.push({ label: 'Phone', value: profile.phone, url: `tel:${profile.phone.replaceAll(' ', '')}` })
     return links
