@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Punith B · City Portfolio</title>
+    <meta name="description" content="Punith B, Electronics and Communication Engineering graduate from Bangalore. Drive around a 3D city to explore skills, experience, projects and contact details.">
+    <meta property="og:title" content="Punith B · City Portfolio">
+    <meta property="og:description" content="Drive a little car around a 3D city to explore my skills, experience and projects.">
+    <meta name="theme-color" content="#a8dcff">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas class="webgl" aria-label="3D city you can drive around"></canvas>
+
+    <!-- Loader / intro -->
+    <div class="loader">
+        <div class="loader-card">
+            <p class="loader-eyebrow">Welcome to</p>
+            <h1>Punith's City</h1>
+            <p class="loader-text">I'm Punith, an Electronics &amp; Communication engineer from Bangalore. This is my portfolio: hop in the car and drive around to discover my skills, experience and projects.</p>
+            <div class="loader-bar"><span></span></div>
+            <p class="loader-label">Loading</p>
+            <button class="loader-start button-primary" type="button" disabled>Start driving</button>
+            <button class="loader-resume button-link" type="button">Prefer reading? Open the résumé view</button>
+        </div>
+    </div>
+
+    <!-- HUD -->
+    <header class="hud">
+        <div class="brand">
+            <strong>Punith B</strong>
+            <span class="discovered">0/9 places</span>
+        </div>
+        <div class="hud-buttons">
+            <button class="hud-button button-view" type="button" aria-label="Switch to first-person view" aria-pressed="false" title="First-person / top-down view (C)">👁️</button>
+            <button class="hud-button button-weather is-auto" type="button" aria-label="Weather: auto. Click to change" title="Weather: auto / clear / rain / snow (T)">🌦️</button>
+            <button class="hud-button button-time" type="button" aria-label="Switch to night" title="Day / night (N)">🌙</button>
+            <button class="hud-button button-sound" type="button" aria-label="Mute sound" title="Sound (L)">🔊</button>
+            <button class="hud-button button-help" type="button" aria-label="Controls" title="Controls">?</button>
+            <button class="hud-button button-menu" type="button" aria-label="Menu" title="Menu (Esc)">☰</button>
+        </div>
+    </header>
+
+    <!-- Interaction prompt -->
+    <div class="prompt" aria-live="polite">
+        <button type="button"><kbd>Enter</kbd> <span>Open</span> <strong class="prompt-title"></strong></button>
+    </div>
+
+    <!-- Content panel -->
+    <aside class="panel" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Details">
+        <div class="panel-inner">
+            <button class="panel-close" type="button" aria-label="Close">✕</button>
+            <div class="panel-content"></div>
+        </div>
+    </aside>
+
+    <!-- Menu -->
+    <nav class="menu" aria-hidden="true" aria-label="Menu">
+        <div class="menu-inner">
+            <button class="menu-close" type="button" aria-label="Close menu">✕</button>
+            <h2>Where to?</h2>
+            <ul class="menu-locations"></ul>
+            <div class="menu-actions">
+                <button class="menu-resume button-primary" type="button">Read as résumé</button>
+                <button class="menu-reset button-secondary" type="button">Put everything back</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Controls help -->
+    <div class="help" role="dialog" aria-label="Controls">
+        <div class="help-inner">
+            <button class="help-close" type="button" aria-label="Close">✕</button>
+            <h2>Controls</h2>
+            <dl>
+                <dt>W A S D / Arrows</dt><dd>Drive</dd>
+                <dt>Shift</dt><dd>Boost</dd>
+                <dt>Space</dt><dd>Jump</dd>
+                <dt>B / Ctrl</dt><dd>Brake</dd>
+                <dt>Enter / E</dt><dd>Open a place</dd>
+                <dt>H</dt><dd>Honk</dd>
+                <dt>R</dt><dd>Respawn</dd>
+                <dt>C</dt><dd>First-person / top-down view</dd>
+                <dt>N</dt><dd>Day / night</dd>
+                <dt>T</dt><dd>Weather: auto → clear → rain → snow</dd>
+                <dt>L</dt><dd>Mute</dd>
+                <dt>Mouse drag / wheel</dt><dd>Look around / zoom</dd>
+                <dt>Esc</dt><dd>Menu</dd>
+            </dl>
+            <p>On a phone: use the joystick, the boost and jump buttons, and tap the prompt to open a place. Click a square on the minimap to drive there.</p>
+        </div>
+    </div>
+
+    <div class="minimap" title="Click a district to go there"><canvas></canvas></div>
+    <div class="toasts" aria-live="polite"></div>
+    <div class="fade"></div>
+
+    <!-- Touch controls -->
+    <div class="touch">
+        <div class="touch-stick"><div class="touch-knob"></div></div>
+        <div class="touch-buttons">
+            <button class="touch-honk" type="button" aria-label="Honk">📯</button>
+            <button class="touch-jump" type="button" aria-label="Jump">⤒</button>
+            <button class="touch-boost" type="button" aria-label="Boost">⚡</button>
+        </div>
+    </div>
+
+    <noscript>
+        <div class="noscript">
+            <h1>Punith B</h1>
+            <p>Electronics and Communication Engineering graduate, Bangalore. Python, JavaScript, React, Node.js, MongoDB. Email: 34punithb@gmail.com</p>
+        </div>
+    </noscript>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
